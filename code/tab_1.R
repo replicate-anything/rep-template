@@ -28,6 +28,7 @@ format_tab_1 <- function(object) {
   as.character(tab)
 }
 
+# Run the code below to manually create outputs using functions defined above.
 if (sys.nframe() == 0L) {
   data <- utils::read.csv("../data/data.csv", stringsAsFactors = FALSE)
   make_tab_1(data) |> format_tab_1()
