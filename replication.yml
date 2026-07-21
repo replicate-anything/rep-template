@@ -8,6 +8,7 @@ paper:
     folder-backed layout: CSV data, one estimatr table, HTML display output,
     and substantive tests. No journal article DOI.
   study_url: https://github.com/replicate-anything/rep-template
+  # R packages needed to run this study (also listed per-step under dependencies:)
   dependencies:
     - estimatr
     - modelsummary
@@ -22,31 +23,34 @@ collections:
 
 repo: replicate-anything/rep-template
 
+# Engines used in this study (r, stata, and/or python). Copied into registry stubs.
 languages:
   - r
 
 steps:
-  - id: tab_1
-    type: table
-    label: Simple table showing from template repo
-    description: OLS of Y on X with robust SEs (estimatr::lm_robust)
-    parents: []
-    engine: r
-    data: data/data.csv
-    inputs:
+  - id: tab_1                 # stable key: links code (make_tab_1 / format_tab_1), DAG, Run, tests
+    type: table              # table | figure | transform | format — Shiny sidebar grouping
+    label: Simple table showing from template repo   # short name in Display sidebar / DAG
+    description: OLS of Y on X with robust SEs (estimatr::lm_robust)  # hover + Display title (label_full)
+    parents: []              # upstream step ids; [] = root (only raw data/). Default if omitted
+    engine: r                # r | stata | python (default r)
+    data: data/data.csv      # passed into make_*(); often same as inputs for simple studies
+    inputs:                  # files this step reads (raw data/ or prior outputs/)
       - data/data.csv
-    code: code/tab_1.R
-    format: format_tab_1
-    outputs:
+    code: code/tab_1.R       # script defining make_<id> / format_<id>
+    format: format_tab_1     # format_* function name (or path to a format helper .R)
+    outputs:                 # files this step writes under outputs/
       - outputs/tab_1.html
-    artifact: outputs/tab_1.html
-    dependencies:
+    dependencies:            # step-level R pkgs (unioned with paper.dependencies for audit)
       - estimatr
       - modelsummary
       - kableExtra
 
+  # Format child: wires format_* for Display / run_replication(..., format = TRUE).
+  # Not shown in the Shiny sidebar. No label needed (falls back to id if ever shown).
+  # Still required as an explicit type: format step in unified steps: yaml (not auto-inferred
+  # from make_*/format_* alone; legacy prep+replications yaml auto-creates <id>_format).
   - id: tab_1_format
     type: format
-    label: Table 1 format
     parent: tab_1
     code: code/tab_1.R
