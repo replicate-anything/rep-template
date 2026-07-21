@@ -1,6 +1,6 @@
 # Table 1 — Minimal template study
 # Study repo: https://github.com/replicate-anything/rep-template
-# Run from the study repo code/ folder: Rscript tab_1.R
+# Execute via: run_replication("rep-template", "tab_1")  (yaml is the recipe)
 
 library(estimatr)
 library(modelsummary)
@@ -26,10 +26,4 @@ format_tab_1 <- function(object) {
     )
 
   as.character(tab)
-}
-
-# Run the code below to manually create outputs using functions defined above.
-if (sys.nframe() == 0L) {
-  data <- utils::read.csv("../data/data.csv", stringsAsFactors = FALSE)
-  make_tab_1(data) |> format_tab_1()
 }

@@ -32,14 +32,14 @@ steps:
     type: table              # table | figure | transform | format — Shiny sidebar grouping
     label: Simple table showing from template repo   # short name in Display sidebar / DAG
     description: OLS of Y on X with robust SEs (estimatr::lm_robust)  # hover + Display title (label_full)
-    parents: []              # upstream step ids; [] = root (only raw data/). Default if omitted
+    # omit parents when root (do not write parents: [])
     engine: r                # r | stata | python (default r)
     data: data/data.csv      # passed into make_*(); often same as inputs for simple studies
     inputs:                  # files this step reads (raw data/ or prior outputs/)
       - data/data.csv
     code: code/tab_1.R       # script defining make_<id> / format_<id>
     format: format_tab_1     # format_* function name (or path to a format helper .R)
-    outputs:                 # files this step writes under outputs/
+    outputs:                 # files this step writes under outputs/ (prefer over deprecated artifact:)
       - outputs/tab_1.html
     dependencies:            # step-level R pkgs (unioned with paper.dependencies for audit)
       - estimatr
@@ -47,7 +47,7 @@ steps:
       - kableExtra
 
   # Format child: wires format_* for Display / run_replication(..., format = TRUE).
-  # Not shown in the Shiny sidebar. No label needed (falls back to id if ever shown).
+  # Not shown in the Shiny sidebar. No label: (unused on format steps).
   # Still required as an explicit type: format step in unified steps: yaml (not auto-inferred
   # from make_*/format_* alone; legacy prep+replications yaml auto-creates <id>_format).
   - id: tab_1_format
