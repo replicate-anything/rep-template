@@ -1,0 +1,52 @@
+paper:
+  study_handle: rep-template
+  title: "Minimal folder-backed template study"
+  year: 2026
+  authors: ReplicateEverything Team
+  abstract: >
+    Unpublished template study for replicateEverything. Demonstrates a minimal
+    folder-backed layout: CSV data, one estimatr table, HTML display output,
+    and substantive tests. No journal article DOI.
+  study_url: https://github.com/replicate-anything/rep-template
+  dependencies:
+    - estimatr
+    - modelsummary
+    - kableExtra
+
+maintainer:
+  name: Macartan Humphreys
+  email: macartan.humphreys@wzb.eu
+
+collections:
+  - IPI
+
+repo: replicate-anything/rep-template
+
+languages:
+  - r
+
+steps:
+  - id: tab_1
+    type: table
+    label: Simple table showing from template repo
+    description: OLS of Y on X with robust SEs (estimatr::lm_robust)
+    parents: []
+    engine: r
+    data: data/data.csv
+    inputs:
+      - data/data.csv
+    code: code/tab_1.R
+    format: format_tab_1
+    outputs:
+      - outputs/tab_1.html
+    artifact: outputs/tab_1.html
+    dependencies:
+      - estimatr
+      - modelsummary
+      - kableExtra
+
+  - id: tab_1_format
+    type: format
+    label: Table 1 format
+    parent: tab_1
+    code: code/tab_1.R
