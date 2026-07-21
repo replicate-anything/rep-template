@@ -14,16 +14,13 @@ format_tab_1 <- function(object) {
   tab <- modelsummary::modelsummary(
     object,
     output = "kableExtra",
-    stars = FALSE,
     statistic = "({std.error})",
-    gof_map = c("nobs", "r.squared"),
-    title = "Simple table showing from template repo"
+    title = "Simple table from template repo"
   ) |>
     kableExtra::kable_styling(
       bootstrap_options = c("condensed", "hover"),
       full_width = FALSE,
       position = "left"
     )
-
   as.character(tab)
 }
