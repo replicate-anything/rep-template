@@ -39,7 +39,8 @@ steps:
       - data/data.csv
     code: code/tab_1.R       # script defining make_<id> / format_<id>
     format: format_tab_1     # format_* function name (or path to a format helper .R)
-    outputs:                 # files this step writes under outputs/ (prefer over deprecated artifact:)
+# Prefer outputs: over deprecated artifact: in comments only
+    outputs:                 # files this step writes under outputs/
       - outputs/tab_1.html
     dependencies:            # step-level R pkgs (unioned with paper.dependencies for audit)
       - estimatr
