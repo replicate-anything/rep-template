@@ -29,7 +29,7 @@ languages:
 steps:
   - id: tab_1                 # stable key: links code (make_tab_1 / format_tab_1), DAG, Run, tests
     type: table              # table | figure | transform | format — Shiny sidebar grouping
-    label: Simple table showing from template repo   # short name in Display sidebar / DAG
+    label: Simple table   # short name in Display sidebar / DAG
     description: OLS of Y on X with robust SEs (estimatr::lm_robust)  # hover + Display title (label_full)
     # omit parents when root (do not write parents: [])
     engine: r                # r | stata | python (default r)
