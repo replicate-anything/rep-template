@@ -11,8 +11,7 @@ paper:
   # R packages needed to run this study (also listed per-step under dependencies:)
   dependencies:
     - estimatr
-    - modelsummary
-    - kableExtra
+    - knitr
 
 maintainer:
   name: Macartan Humphreys
@@ -44,8 +43,7 @@ steps:
       - outputs/tab_1.html
     dependencies:            # step-level R pkgs (unioned with paper.dependencies for audit)
       - estimatr
-      - modelsummary
-      - kableExtra
+      - knitr
 
   # Format child: wires format_* for Display / run_replication(..., format = TRUE).
   # Not shown in the Shiny sidebar. No label: (unused on format steps).

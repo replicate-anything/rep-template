@@ -43,8 +43,7 @@ study_test_context <- function() {
 test_that("run_replication executes tab_1 and matches benchmarks", {
   testthat::skip_if_not_installed("replicateEverything")
   testthat::skip_if_not_installed("estimatr")
-  testthat::skip_if_not_installed("modelsummary")
-  testthat::skip_if_not_installed("kableExtra")
+  testthat::skip_if_not_installed("knitr")
 
   ctx <- study_test_context()
   testthat::skip_if_not(
