@@ -3,6 +3,7 @@ paper:
   title: "Minimal folder-backed template study"
   year: "2026a"
   authors: ReplicateEverything Team
+  source_repository: https://github.com/replicate-anything/replicateEverything
   abstract: >
     Unpublished template study for replicateEverything. Demonstrates a minimal
     folder-backed layout: CSV data, one estimatr table, HTML display output,
